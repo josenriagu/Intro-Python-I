@@ -33,21 +33,19 @@ import sys
 import calendar
 import datetime
 
-# print(dir(today))
-
 
 def cal():
     # get current date
     today = datetime.date.today()
+    # get passed arguments in console using sys.srgv
+    args = sys.argv
     try:
-        user_input = input(
-            "please enter a date in the form `month year` (seperated by spaces e.g 12 1985): ").split()
-        if (len(user_input) == 0):
+        if (len(args) == 1):
             print(calendar.month(today.year, today.month))
-        elif (len(user_input) == 1):
-            print(calendar.month(today.year, int(user_input[0])))
-        elif (len(user_input) == 2):
-            print(calendar.month(int(user_input[1]), int(user_input[0])))
+        elif (len(args) == 2):
+            print(calendar.month(today.year, int(args[1])))
+        elif (len(args) == 3):
+            print(calendar.month(int(args[2]), int(args[1])))
         else:
             print("Are you sure the entry is valid?")
     except (ValueError, IndexError):
