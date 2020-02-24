@@ -3,6 +3,8 @@ The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
 https://docs.python.org/3.6/library/calendar.html
 
+https://www.geeksforgeeks.org/python-calendar-module/
+
 Write a program that accepts user input of the form
   `14_cal.py [month] [year]`
 and does the following:
@@ -29,4 +31,25 @@ it should use today’s date to get the month and year.
 
 import sys
 import calendar
-from datetime import datetime
+import datetime
+
+
+def cal():
+    # get current date
+    today = datetime.date.today()
+    # get passed arguments in console using sys.srgv
+    args = sys.argv
+    try:
+        if (len(args) == 1):
+            print(calendar.month(today.year, today.month))
+        elif (len(args) == 2):
+            print(calendar.month(today.year, int(args[1])))
+        elif (len(args) == 3):
+            print(calendar.month(int(args[2]), int(args[1])))
+        else:
+            print("Are you sure the entry is valid?")
+    except (ValueError, IndexError):
+        print("Oops, I can bet you are not passing the date in the specified format")
+
+
+cal()
